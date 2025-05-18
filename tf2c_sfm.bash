@@ -5,13 +5,13 @@
 # USE AT YOUR OWN RISK! NO WARRANTY!
 #
 clear
-function query(){
+query(){
 	echo -n '> ' 1>&2
 	read -r answer
 	echo "$answer"
 }
 
-function getdir(){
+getdir(){
 	for i in ${STEAM_DIRS[@]}
 	do
 		dir="${i}/steamapps/common/${1}"
@@ -22,11 +22,11 @@ function getdir(){
 	echo "Could not find a ${1} installation." 1>&2
 	exit 1
 }
-function vpk_extract(){
+vpk_extract(){
 	# LD_LIBRARY_PATH="${DIR_VPK_LIB}:${LD_LIBRARY_PATH}" "$VPK_LINUX" "$@"
 	"$VPK" -x "$2" -re '^(maps|materials|models|sound|particles)/' "$1"
 }
-function vpk_size(){
+vpk_size(){
 	for i in "$@"
 	do
 		"$VPK" -la -re '^(maps|materials|models|sound|particles)/' "$i"
@@ -47,7 +47,7 @@ vpk_confirm(){
 		exit ;;
 	esac
 }
-function fixmat(){
+fixmat(){
 	# TF2C uses vmt shaders with the format SDK_xyz
 	# SFM only understands xyz
 	find "$1" -type f -iname '*.vmt' |
