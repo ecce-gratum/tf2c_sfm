@@ -58,13 +58,13 @@ EXIT 1
 	REM SFM only understands xyz
 	TITLE TF2C_SFM - Fixing Materials...
 	ECHO Sit back^, this can take a few minutes...
-	FOR /F %%I IN ('WHERE /R %~1\materials *.vmt') DO (
-		(FOR /F "delims=" %%J IN (%%I) DO (
+	FOR /F "delims=" %%I IN ('WHERE /R "%~1\materials" *.vmt') DO (
+		(FOR /F "delims=" %%J IN ('type "%%~I"') DO (
 			SET LINE=%%J
 			SET LINE=!LINE:"SDK_="!
 			ECHO:!LINE!
-	))>"%%I.FIX.TMP
-		MOVE /Y %%I.FIX.TMP %%I >NUL
+	))>"%%I.FIX.TMP"
+		MOVE /Y "%%I.FIX.TMP" "%%I" >NUL
 		ECHO:Fixed %%I
 	)
 GOTO :EOF
