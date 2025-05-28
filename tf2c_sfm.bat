@@ -62,6 +62,7 @@ EXIT 1
 		(FOR /F "delims=" %%J IN ('type "%%~I"') DO (
 			SET LINE=%%J
 			SET LINE=!LINE:"SDK_="!
+			SET LINE=!LINE:SDK_=!
 			ECHO:!LINE!
 	))>"%%I.FIX.TMP"
 		MOVE /Y "%%I.FIX.TMP" "%%I" >NUL

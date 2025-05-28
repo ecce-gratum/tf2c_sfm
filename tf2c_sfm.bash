@@ -53,7 +53,7 @@ fixmat(){
 	find "$1" -type f -iname '*.vmt' |
 	while read -r i
 	do
-		if sed -i '1s,^"SDK_,",g' "$i"
+		if sed -i '1s,^"SDK_,",g; 1s,^SDK_,,g' "$i"
 		then
 			echo Fixed "$i"
 		else
